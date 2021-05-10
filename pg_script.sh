@@ -6,7 +6,8 @@ cat <<EOF >> $datadir/pg_hba.conf
 host          all           all          0.0.0.0/0             trust
 EOF
 pg_ctl -D $datadir reload
-# psql $uri -c "CREATE EXTENSION postgis;"
+psql $uri -c "CREATE EXTENSION postgis;"
 psql $uri -f iris_create.sql
 psql $uri -f fire_incident.sql
+psql $uri -f sf_jurisdictions.sql
 psql $uri
