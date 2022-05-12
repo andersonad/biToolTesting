@@ -6,4 +6,4 @@ CREATE TABLE iris_data (
   , species VARCHAR(100) NOT NULL
 );
 
-\COPY iris_data (sepal_length, sepal_width, petal_length, petal_width, species) FROM '/home/austin/biToolTesting/iris.csv' CSV HEADER;
+\COPY iris_data (sepal_length, sepal_width, petal_length, petal_width, species) FROM '{pwd}/iris.csv' CSV HEADER;
