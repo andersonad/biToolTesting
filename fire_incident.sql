@@ -73,3 +73,5 @@ CREATE TABLE fire_incident (
 ALTER TABLE fire_incident ADD COLUMN geom geometry(Point, 4326);
 UPDATE fire_incident set geom = ST_GeomFromText(point, 4326);
 
+CREATE TABLE if not exists incident_facts as
+(SELECT date_trunc('day', alarm_dttm) as date_day, count(*), sum(fire_fatalities + civilian_fatalities) as fatalities, sum(estimated_property_loss + estimated_contents_loss) as total_losses, PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY (arrival_dttm - alarm_dttm)) as turnout_90_pctl FROM fire_incident GROUP BY date_trunc('day', alarm_dttm));
