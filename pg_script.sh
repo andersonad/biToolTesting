@@ -22,4 +22,5 @@ fi
 rm iris_create.sql.tmp
 rm fire_incident.sql.tmp
 psql $uri
-
+# Example query of elevation for all fire incidents in san francisco: 
+# select rid, ST_Value(rast, geom) from san_fran_elevations, fire_incident where ST_INTERSECTS(rast, geom);
