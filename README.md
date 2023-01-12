@@ -37,3 +37,7 @@ fire\_incidents.csv comes from a subset of San Francisco's fire incidents data s
 iris.csv is the ubiquitous iris dataset used for teaching data exploration and visualization. There are plenty of places to find this, but here is a kaggle archived data source. https://www.kaggle.com/uciml/iris
 
 jurisdictions.sql is derived from San Francisco's open data [Bay Region jurisdictions](https://opendata.mtc.ca.gov/datasets/9cf652ef5e3545faa2630a91070bf87c_0?geometry=-127.405%2C37.123%2C-117.337%2C38.640) using `shp2pgsql`.
+
+Optional elevation data
+---
+If you would like to include elevation data for the San Francisco area from [USGS](https://www.usgs.gov/the-national-map-data-delivery/gis-data-download). Run `generate_dem.sh` within this directory before executing `pg_script`. You will need to make sure you have `raster2pgsql` available on your system PATH. This tool comes with your postGIS installation, but if you installed postgis manually after building it, you will need to either point PATH to the executable within the postgis directory or move the executable to a directory on your PATH (e.g. `~/local/bin/`).

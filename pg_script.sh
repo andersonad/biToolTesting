@@ -11,10 +11,14 @@ pg_ctl -D $datadir reload
 cat iris_create.sql | sed "s|{pwd}|$(pwd)|" > iris_create.sql.tmp
 cat fire_incident.sql | sed "s|{pwd}|$(pwd)|" > fire_incident.sql.tmp
 psql $uri -c "CREATE EXTENSION postgis;"
+psql $uri -c "CREATE EXTENSION postgis_raster;"
 psql $uri -f iris_create.sql.tmp
 psql $uri -f fire_incident.sql.tmp
 psql $uri -f sf_jurisdictions.sql
 psql $uri -f jurisdiction_incidents.sql
+if test -f "sanfranelevations.sql"; then
+    psql $uri -f sanfranelevations.sql
+fi
 rm iris_create.sql.tmp
 rm fire_incident.sql.tmp
 psql $uri
